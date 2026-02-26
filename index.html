@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOM'STT AI | Otomatisasi Notulen & Laporan Rapat</title>
+	<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎙️</text></svg>">
+    <style>
+        /* --- CSS DASAR & RESET --- */
+        :root {
+            --primary: #000000;
+            --accent: #e74c3c;
+            --bg-light: #F4F6F9;
+            --text-main: #111111;
+            --text-muted: #666666;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        body { background-color: #FFFFFF; color: var(--text-main); line-height: 1.6; }
+		html { scroll-behavior: smooth; }
+        section[id] { scroll-margin-top: 90px; }
+        a { text-decoration: none; color: inherit; }
+        
+        /* --- NAVIGASI --- */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: rgba(255,255,255,0.95); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #EEE; backdrop-filter: blur(10px); }
+        .logo { font-size: 24px; font-weight: 800; letter-spacing: -1px; }
+        .logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a { font-weight: 600; font-size: 15px; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
+        .btn-login { background: var(--primary); color: #FFF !important; padding: 8px 20px; border-radius: 8px; }
+        .btn-login:hover { background: #333; }
+
+        /* --- HERO SECTION --- */
+        .hero { text-align: center; padding: 80px 5% 60px; background: var(--bg-light); }
+        .hero h1 { font-size: 2.8rem; font-weight: 800; line-height: 1.2; margin-bottom: 20px; letter-spacing: -1px; }
+        .hero p { font-size: 1.1rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 30px; }
+        .btn-main { display: inline-block; background: var(--accent); color: #FFF; font-size: 1.1rem; font-weight: 700; padding: 15px 35px; border-radius: 10px; transition: transform 0.2s, box-shadow 0.2s; }
+        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(231, 76, 60, 0.3); color: #FFF; }
+
+        /* --- FITUR (NILAI PLUS) --- */
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 60px 5%; max-width: 1200px; margin: 0 auto; }
+        .feature-card { text-align: center; padding: 40px 20px; background: #FFF; border: 1px solid #EEE; border-radius: 16px; transition: transform 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
+        .feature-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .feature-icon { font-size: 40px; margin-bottom: 15px; }
+        .feature-card h3 { font-size: 1.3rem; margin-bottom: 10px; }
+        .feature-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* --- TUTORIAL SECTION --- */
+        .tutorial { background: var(--primary); color: #FFF; padding: 80px 5%; }
+        .tutorial h2 { text-align: center; font-size: 2.2rem; margin-bottom: 50px; }
+        .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
+        .step { position: relative; }
+        .step-num { font-size: 3rem; font-weight: 900; color: rgba(255,255,255,0.1); position: absolute; top: -30px; left: -10px; z-index: 1; }
+        .step-content { position: relative; z-index: 2; }
+        .step h4 { font-size: 1.2rem; margin-bottom: 10px; color: var(--accent); }
+        .step p { color: #CCC; font-size: 0.95rem; }
+
+        /* --- PRICING SECTION --- */
+        .pricing { padding: 80px 5%; background: var(--bg-light); }
+        .pricing h2 { text-align: center; font-size: 2.2rem; margin-bottom: 15px; }
+        .pricing-subtitle { text-align: center; color: var(--text-muted); margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
+        .price-card { background: #FFF; padding: 40px 30px; border-radius: 16px; border: 1px solid #E0E0E0; position: relative; display: flex; flex-direction: column; }
+        .price-card.popular { border: 2px solid var(--primary); transform: scale(1.02); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--primary); color: #FFF; padding: 4px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
+        .price-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 15px; }
+        .price-tag { font-size: 2rem; font-weight: 800; margin-bottom: 20px; color: var(--accent); }
+        .price-features { list-style: none; margin-bottom: 30px; flex-grow: 1; }
+        .price-features li { margin-bottom: 12px; font-size: 0.95rem; color: var(--text-muted); display: flex; align-items: flex-start; }
+        .price-features li::before { content: "✓"; color: #2ecc71; font-weight: bold; margin-right: 10px; }
+        .btn-price { display: block; text-align: center; padding: 12px; background: var(--bg-light); color: var(--primary); font-weight: 700; border-radius: 8px; border: 1px solid #CCC; transition: 0.2s; }
+        .price-card.popular .btn-price { background: var(--primary); color: #FFF; border: none; }
+        .btn-price:hover { background: var(--accent); color: #FFF; border-color: var(--accent); }
+
+        /* --- FOOTER --- */
+        footer { text-align: center; padding: 30px 5%; border-top: 1px solid #EEE; color: var(--text-muted); font-size: 0.9rem; }
+
+		/* --- RESPONSIVE MOBILE --- */
+        @media (max-width: 768px) {
+            nav { flex-direction: column; gap: 15px; padding: 15px 5%; }
+            .nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+            .nav-links a { font-size: 13px; }
+            .btn-login { font-size: 13px !important; padding: 6px 15px; }
+            .hero h1 { font-size: 2.2rem; }
+            .price-card.popular { transform: scale(1); }
+			section[id] { scroll-margin-top: 160px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo" style="text-decoration: none; color: inherit;">
+            🎙️ TOM'<span>STT</span> AI
+        </a>
+        <div class="nav-links">
+            <a href="#tutorial">Cara Kerja</a>
+            <a href="tutorial.html">Panduan Video</a>
+            <a href="#pricing">Harga</a>
+            <a href="https://tom-stt.com" class="btn-login">Login Aplikasi</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Otomatisasi Notulen & Laporan Rapat dalam Hitungan Menit.</h1>
+        <p>Mengubah rekaman rapat berjam-jam menjadi teks manual bisa menyita 1-2 hari kerja Anda. Tinggalkan cara lama, biarkan AI kami yang bekerja keras menyusun dokumen siap cetak standar kementerian dan korporat.</p>
+        <a href="https://tom-stt.com" class="btn-main">Coba Sekarang</a>
+    </section>
+
+    <section class="features">
+        <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Hemat Waktu</h3>
+            <p>Pekerjaan administratif yang memakan waktu berhari-hari kini selesai hanya dalam hitungan menit. Fokuskan waktu Anda pada pengambilan keputusan.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🧠</div>
+            <h3>AI Super Pintar</h3>
+            <p>Bukan sekadar transkrip teks biasa. AI kami telah dilatih untuk mengekstrak poin penting menjadi format Notulen atau Laporan Memorandum secara otomatis.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">⚖️</div>
+            <h3>Tagihan Super Adil</h3>
+            <p>Aplikasi lain memotong kuota saat ada jeda hening. Di sistem kami, durasi dihitung murni berdasarkan jumlah kata aktual yang diucapkan.</p>
+        </div>
+    </section>
+
+    <section class="tutorial" id="tutorial">
+        <h2>Bagaimana Cara Kerjanya?</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                    <h4>Upload atau Rekam</h4>
+                    <p>Login ke dalam aplikasi. Anda dapat mengunggah file rekaman rapat (mendukung berbagai format audio) atau merekam suara secara langsung dari perangkat Anda.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                    <h4>Transkripsi Presisi</h4>
+                    <p>Mesin *Speech-to-Text* (STT) kami akan mendengarkan dan mengetik ulang seluruh percakapan ke dalam bentuk teks transkrip dengan akurasi tinggi.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                    <h4>Ekstrak Dokumen AI</h4>
+                    <p>Masuk ke tab Ekstrak AI. Pilih apakah Anda ingin menyusun "Notulen" atau "Laporan". AI akan otomatis membedah dan menstrukturisasi isi rapat Anda.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">4</div>
+                <div class="step-content">
+                    <h4>Download Hasilnya</h4>
+                    <p>Dokumen telah selesai! Anda bisa langsung mengunduhnya dalam format Microsoft Word (.docx) yang sangat rapi dan siap untuk didistribusikan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <h2>Pilih Paket Kuota Anda</h2>
+        <p class="pricing-subtitle">Sistem kuota tiket yang diakumulasi. Dilengkapi perlindungan Saldo Utama untuk batas toleransi durasi yang terlewat.</p>
+        
+        <div class="price-grid">
+            <div class="price-card">
+                <div class="price-name">Starter</div>
+                <div class="price-tag">Rp 51.000</div>
+                <ul class="price-features">
+                    <li><b>2x</b>&nbsp; Analisis & Ekstrak AI</li>
+                    <li>Kapasitas: Maks. 45 Menit / File</li>
+                    <li>Masa Aktif: 14 Hari</li>
+                    <li>Penyimpanan Sekali Pakai</li>
+                </ul>
+                <a href="https://tom-stt.com" class="btn-price">Beli Paket</a>
+            </div>
+
+            <div class="price-card">
+                <div class="price-name">Pro Notulis</div>
+                <div class="price-tag">Rp 127.500</div>
+                <ul class="price-features">
+                    <li><b>5x</b>&nbsp; Analisis & Ekstrak AI</li>
+                    <li>Kapasitas: Maks. 1 Jam / File</li>
+                    <li>Masa Aktif: 30 Hari</li>
+                    <li>Bonus Saldo: Rp 2.500</li>
+                </ul>
+                <a href="https://tom-stt.com" class="btn-price">Beli Paket</a>
+            </div>
+
+            <div class="price-card popular">
+                <div class="badge">Terlaris</div>
+                <div class="price-name">Eksekutif</div>
+                <div class="price-tag">Rp 306.000</div>
+                <ul class="price-features">
+                    <li><b>14x</b>&nbsp; Analisis & Ekstrak AI</li>
+                    <li>Kapasitas: Maks. 1,5 Jam / File</li>
+                    <li>Masa Aktif: 45 Hari</li>
+                    <li>Bonus Saldo: Rp 7.500</li>
+                    <li>Cloud Storage Tersedia</li>
+                </ul>
+                <a href="https://tom-stt.com" class="btn-price">Beli Paket</a>
+            </div>
+
+            <div class="price-card">
+                <div class="price-name">VIP</div>
+                <div class="price-tag">Rp 765.000</div>
+                <ul class="price-features">
+                    <li><b>38x</b>&nbsp; Analisis & Ekstrak AI</li>
+                    <li>Kapasitas: Maks. 2,5 Jam / File</li>
+                    <li>Masa Aktif: 60 Hari</li>
+                    <li>Bonus Saldo: Rp 18.500</li>
+                    <li>Prioritas Utama Server</li>
+                </ul>
+                <a href="https://tom-stt.com" class="btn-price">Beli Paket</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 TOM'STT AI. Hak Cipta Dilindungi Undang-Undang.</p>
+    </footer>
+
+</body>
+</html>
