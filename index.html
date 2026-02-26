@@ -64,7 +64,8 @@
         .price-card.popular { border: 2px solid var(--primary); transform: scale(1.02); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
         .badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--primary); color: #FFF; padding: 4px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
         .price-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 15px; }
-        .price-tag { font-size: 2rem; font-weight: 800; margin-bottom: 20px; color: var(--accent); }
+        .price-strike { font-size: 1.1rem; color: #a0a0a0; text-decoration: line-through; margin-bottom: -5px; font-weight: 600; }
+		.price-tag { font-size: 2rem; font-weight: 800; margin-bottom: 20px; color: var(--accent); }
         .price-features { list-style: none; margin-bottom: 30px; flex-grow: 1; }
         .price-features li { margin-bottom: 12px; font-size: 0.95rem; color: var(--text-muted); display: flex; align-items: flex-start; }
         .price-features li::before { content: "✓"; color: #2ecc71; font-weight: bold; margin-right: 10px; }
@@ -107,22 +108,21 @@
         <a href="https://tom-stt.com" class="btn-main">Coba Sekarang</a>
     </section>
 
-    <section class="features">
+	<section class="features">
         <div class="feature-card">
-            <div class="feature-icon">⚡</div>
-            <h3>Hemat Waktu</h3>
-            <p>Pekerjaan administratif yang memakan waktu berhari-hari kini selesai hanya dalam hitungan menit. Fokuskan waktu Anda pada pengambilan keputusan.</p>
+            <div class="feature-icon">🚫</div>
+            <h3>Anti-Langganan Bulanan</h3>
+            <p>Ngapain bayar langganan Rp 300rb sebulan kalau cuma dipakai 2x rapat? Kami menggunakan sistem Beli Kuota (<i>Pay-As-You-Go</i>). Beli Paket Starter Rp 51.000, kuotanya awet dan tidak hangus ditelan bulan!</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3>Privasi Mutlak 100%</h3>
+            <p>Rapat direksi rahasia? Jangan biarkan Bot AI asing menyusup ke link Zoom Anda! Rekam manual pakai HP Anda, lalu upload ke sistem. Privasi terjaga, tanpa ada bot yang menguping rapat.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">🧠</div>
             <h3>AI Super Pintar</h3>
-            <p>Bukan sekadar transkrip teks biasa. AI kami telah dilatih untuk mengekstrak poin penting menjadi format Notulen atau Laporan secara otomatis.</p>
-            <p>Bukan sekadar transkrip teks biasa. AI kami telah dilatih untuk mengekstrak poin penting menjadi format Notulen atau Laporan secara otomatis.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">⚖️</div>
-            <h3>Tagihan Super Adil</h3>
-            <p>Aplikasi lain memotong kuota saat ada jeda hening. Di sistem kami, durasi dihitung murni berdasarkan jumlah kata aktual yang diucapkan.</p>
+            <p>Bukan sekadar transkrip teks biasa. AI kami telah dilatih khusus untuk mengekstrak poin penting menjadi format Notulen atau Laporan Memorandum siap cetak secara otomatis.</p>
         </div>
     </section>
 
@@ -133,7 +133,7 @@
                 <div class="step-num">1</div>
                 <div class="step-content">
                     <h4>Upload atau Rekam</h4>
-                    <p>Login ke dalam aplikasi. Anda dapat mengunggah file rekaman rapat (mendukung berbagai format audio) atau merekam suara secara langsung dari perangkat Anda.</p>
+                    <p>Login ke dalam aplikasi. Anda dapat mengupload file rekaman rapat (mendukung berbagai format audio) atau merekam suara secara langsung dari perangkat Anda.</p>
                 </div>
             </div>
             <div class="step">
@@ -160,13 +160,14 @@
         </div>
     </section>
 
-    <section class="pricing" id="pricing">
+	<section class="pricing" id="pricing">
         <h2>Pilih Paket Kuota Anda</h2>
-        <p class="pricing-subtitle">Sistem kuota tiket yang diakumulasi maksimal hingga 90 Hari / 3 Bulan. Dilengkapi perlindungan Saldo Utama untuk batas toleransi durasi yang terlewat. </p>
+        <p class="pricing-subtitle"><b>Sistem Beli Kuota (Pay-As-You-Go). Tanpa jebakan langganan bulanan!</b><br>Kuota Anda dapat diakumulasi maksimal hingga 90 Hari. Dilengkapi perlindungan Saldo Utama untuk batas toleransi durasi yang terlewat.</p>
         
         <div class="price-grid">
             <div class="price-card">
                 <div class="price-name">Starter</div>
+                <div class="price-strike">Rp 99.000</div>
                 <div class="price-tag">Rp 51.000</div>
                 <ul class="price-features">
                     <li><b>2x</b>&nbsp; Analisis & Ekstrak AI</li>
@@ -179,6 +180,7 @@
 
             <div class="price-card">
                 <div class="price-name">Pro Notulis</div>
+                <div class="price-strike">Rp 249.000</div>
                 <div class="price-tag">Rp 127.500</div>
                 <ul class="price-features">
                     <li><b>5x</b>&nbsp; Analisis & Ekstrak AI</li>
@@ -192,6 +194,7 @@
             <div class="price-card popular">
                 <div class="badge">Terlaris</div>
                 <div class="price-name">Eksekutif</div>
+                <div class="price-strike">Rp 599.000</div>
                 <div class="price-tag">Rp 306.000</div>
                 <ul class="price-features">
                     <li><b>14x</b>&nbsp; Analisis & Ekstrak AI</li>
@@ -205,6 +208,7 @@
 
             <div class="price-card">
                 <div class="price-name">VIP</div>
+                <div class="price-strike">Rp 1.499.000</div>
                 <div class="price-tag">Rp 765.000</div>
                 <ul class="price-features">
                     <li><b>38x</b>&nbsp; Analisis & Ekstrak AI</li>
