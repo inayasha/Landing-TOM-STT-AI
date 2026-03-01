@@ -93,7 +93,7 @@
 
     <section class="hero">
         <h1>Panduan Penggunaan TOM'STT AI</h1>
-        <p>Pelajari cara mengubah rekaman rapat Anda menjadi dokumen Notulen, Laporan, Ringkasan Eksekutif ataupun Analisis SWOT hanya dalam 4 langkah mudah.</p>
+        <p>Pelajari cara mengubah rekaman audio Anda menjadi dokumen Notulen, Laporan, Matriks RTL, Q&A, Ringkasan, Artikel Berita, Analisis SWOT ataupun Transkrip Verbatim hanya dalam 4 langkah mudah.</p>
         
         <div class="video-container">
             <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0" title="Tutorial TOM STT AI" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -140,7 +140,7 @@
                 <h3>Analisis AI & Chat Interaktif</h3>
                 <p>Setelah transkrip mentah selesai, AI kami siap menyusunnya menjadi dokumen resmi dan menjadi asisten pribadi Anda.</p>
                 <ul>
-                    <li>Di tab <b>🧠 Analisis AI</b>, klik tombol untuk membuat <b>Notulen, Laporan, Ringkasan, atau SWOT</b>.</li>
+                    <li>Di tab <b>🧠 Analisis AI</b>, klik tombol untuk membuat <b>Notulen, Laporan, Matriks RTL, Q&A, Ringkasan, Artikel Berita, Analisis SWOT & Transkrip Verbatim</b>.</li>
                     <li>Gunakan fitur <b>💬 Tanya AI</b> di bagian bawah untuk menanyakan detail rapat secara langsung (Chatbot).</li>
                 </ul>
             </div>
@@ -167,28 +167,63 @@
 
     </section>
 
-    <section class="faq">
-        <h2>Pertanyaan Sering Diajukan (FAQ)</h2>
-        <div class="faq-grid">
-            <div class="faq-item">
-                <h4>Bagaimana perhitungan batas durasi?</h4>
-                <p>Sistem kami sangat adil. Durasi dihitung dari total <b>kata yang diucapkan</b>, bukan waktu mentah rekaman. Jeda hening saat rapat tidak akan memotong tagihan kuota Anda.</p>
-            </div>
-            <div class="faq-item">
-                <h4>Apa fungsi Saldo Utama?</h4>
-                <p>Saldo Utama berfungsi sebagai pelindung (subsidi silang). Jika batas paket Anda adalah 1 Jam, namun rapat berlangsung 1 Jam 15 Menit, kelebihannya otomatis dipotong dari Saldo (dengan tarif <b>Rp 350 / Menit</b>) agar proses tidak gagal.</p>
-            </div>
-			<div class="faq-item">
-                <h4>Bagaimana sistem tarif fitur Tanya AI (Chatbot)?</h4>
-                <p>Setiap dokumen memiliki <b>jatah tanya gratis</b> (Starter: 2x, Pro: 4x, Eksekutif: 6x, VIP: 8x). Jika jatah gratis habis, Anda tetap dapat lanjut bertanya dengan tarif super ringan, yakni memotong Saldo Utama sebesar <b>Rp 500 per pertanyaan</b> (atau menukarkan 1 Kuota Ekstrak).</p>
-            </div>
-            <div class="faq-item">
-                <h4>Bagaimana jika proses AI gagal di tengah jalan?</h4>
-                <p>Jangan khawatir. Transkrip mentah Anda tersimpan aman (auto-save) di dalam akun. Kuota dan Saldo Anda <b>hanya dipotong jika proses berhasil 100%</b>.</p>
-            </div>
-            <div class="faq-item">
-                <h4>Apakah aman untuk dokumen rahasia instansi?</h4>
-                <p>Sangat aman. Kami menggunakan enkripsi standar industri. Setelah dokumen selesai Anda download, Anda memiliki kendali penuh untuk menghapus riwayat transkrip dari dashboard.</p>
+<section class="faq" id="faq">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 40px;">Pertanyaan Sering Diajukan (FAQ)</h2>
+            <div class="faq-grid">
+                
+                <div class="faq-item">
+                    <h4>Apa keunggulan utama TOM'STT AI dibandingkan aplikasi lain?</h4>
+                    <p><b>Privacy-First:</b> Tanpa bot penyusup rapat. Kendali penuh di tangan Anda.<br>
+                       <b>Universal Importer:</b> Mendukung audio dan dokumen teks (.txt).<br>
+                       <b>8 Jenis Dokumen:</b> Notulen, Laporan, Ringkasan, Artikel Berita, Matriks RTL, Q&A, SWOT, dan Verbatim.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Apakah harga paket ini termasuk mahal untuk sebuah Transkriptor STT?</h4>
+                    <p>Justru sebaliknya, TOM'STT AI memberikan tarif paling murah di Indonesia dengan performa yang sangat efisien. Jika Anda menggunakan Paket Eksekutif, biaya riilnya hanya Rp 110/menit, dan di Paket Enterprise angkanya turun drastis menjadi hanya Rp 33 perak per menit. Sebagai perbandingan, menyewa jasa transkriptor manusia rata-rata memakan biaya Rp 3.000 hingga Rp 5.000 per menit. Dengan TOM'STT AI, Anda <b>menghemat anggaran hingga 98%.</b></p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Apakah saya bisa menumpuk paket (Stacking)?</h4>
+                    <p>Sangat bisa! Pembelian paket baru otomatis menjumlahkan kuota, bonus saldo, dan memperpanjang <b>masa aktif akun hingga maksimal 150 hari ke depan.</b></p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Bagaimana perhitungan batas durasi dan karakter teks?</h4>
+                    <p>Durasi dihitung berdasarkan kata aktual (jeda hening gratis). Untuk teks (.txt), kapasitas otomatis menyesuaikan dengan tingkatan paket Anda (Soft Limit).</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Apa fungsi Saldo Utama?</h4>
+                    <p>Sebagai pelindung (buffer). Digunakan otomatis jika audio/teks melebihi batas paket (Rp 350/menit audio atau Rp 500/5.000 karakter teks ekstra).</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Bagaimana sistem tarif fitur Tanya AI (Chatbot)?</h4>
+                    <p>Terbuka setelah dokumen diproses. <b>Anda mendapat jatah GRATIS</b> (Lite: 2x hingga Enterprise: 15x). Jika habis, tarif Rp 500/pertanyaan dipotong dari Saldo Utama.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Apakah pembayaran otomatis instan?</h4>
+                    <p>Ya! Melalui <b>Payment Gateway</b>, akun Anda aktif otomatis setelah pembayaran sukses via QRIS, E-Wallet, atau VA tanpa perlu konfirmasi manual.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Bagaimana jika proses AI gagal?</h4>
+                    <p>Sistem kami menggunakan <i>Smart Deduction</i>: Kuota dan Saldo Anda <b>hanya dipotong jika proses berhasil 100%</b>.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Bagaimana cara kerja Add-on Eceran?</h4>
+                    <p>Tersedia <b>Refill Tiket</b> (Rp 25.500), <b>Ekstensi Waktu</b> (Rp 35.700), dan <b>Booster Durasi</b> (Rp 19.380) yang dapat dibeli kapan saja di menu Saldo.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Apakah aman untuk dokumen rahasia instansi?</h4>
+                    <p>Sangat aman. File audio dihapus otomatis setelah diproses. Anda memegang kendali penuh untuk menghapus riwayat dari Cloud kapan saja.</p>
+                </div>
+
             </div>
         </div>
     </section>
