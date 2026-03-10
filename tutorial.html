@@ -258,30 +258,33 @@
     </footer>
 	
 <style>
-        /* 1. Kotak Hitam Overlay (Disembunyikan default) */
+        /* 1. Kotak Hitam Overlay */
         .image-modal {
-            display: none; /* Sembunyi */
+            display: none; /* Akan diubah menjadi 'flex' oleh JavaScript */
             position: fixed;
-            z-index: 9999; /* Paling atas */
-            padding-top: 50px;
+            z-index: 9999; 
             left: 0;
             top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.9); /* Hitam Transparan */
-            cursor: zoom-out; /* Klik di mana saja untuk keluar */
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0,0,0,0.92); /* Hitam pekat elegan */
+            cursor: zoom-out;
+            
+            /* KUNCI POSISI TENGAH ABSOLUT (FLEXBOX) */
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
         }
 
-        /* 2. Gambar di Dalam Modal (Ukuran Penuh) */
+        /* 2. Gambar di Dalam Modal (Ukuran Penuh & Responsif) */
         .modal-content {
-            margin: auto;
-            display: block;
-            max-width: 90%;
-            max-height: 85vh; /* Maksimal 85% tinggi layar */
-            border: 4px solid #fff;
+            max-width: 95vw;  /* Maksimal 95% lebar layar HP/Laptop */
+            max-height: 85vh; /* Maksimal 85% tinggi layar HP/Laptop */
+            object-fit: contain; /* Menjaga resolusi asli agar tidak gepeng */
+            
+            border: 2px solid #444; /* Bingkai tipis elegan */
             border-radius: 8px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
             
             /* Animasi Zoom Masuk */
             animation-name: zoom;
@@ -289,44 +292,43 @@
         }
 
         @keyframes zoom {
-            from {transform:scale(0)} 
-            to {transform:scale(1)}
+            from {transform:scale(0.8); opacity: 0;} 
+            to {transform:scale(1); opacity: 1;}
         }
 
         /* 3. Tombol Tutup (X) */
         .close-modal {
             position: absolute;
-            top: 20px;
-            right: 35px;
+            top: 15px;
+            right: 30px;
             color: #f1f1f1;
-            font-size: 40px;
+            font-size: 45px;
             font-weight: bold;
             transition: 0.3s;
             cursor: pointer;
+            z-index: 10000;
         }
 
         .close-modal:hover,
         .close-modal:focus {
-            color: #e74c3c; /* Warna merah saat hover */
+            color: #e74c3c;
             text-decoration: none;
         }
 
         /* 4. Teks Deskripsi di Bawah Gambar */
         #modal-caption {
-            margin: auto;
-            display: block;
-            width: 80%;
-            max-width: 700px;
+            margin-top: 15px;
             text-align: center;
             color: #ccc;
-            padding: 15px 0;
             font-size: 1.1rem;
+            font-weight: 500;
         }
 
-        /* Responsif HP: Gambar lebih penuh */
-        @media only screen and (max-width: 700px){
-            .modal-content { width: 100%; }
-            .close-modal { right: 15px; top: 10px; font-size: 50px; }
+        /* Responsif HP: Maksimalkan ruang layar */
+        @media only screen and (max-width: 768px){
+            .modal-content { max-width: 98vw; max-height: 80vh; }
+            .close-modal { right: 15px; top: 10px; font-size: 40px; }
+            #modal-caption { font-size: 0.95rem; }
         }
     </style>
 
@@ -335,52 +337,41 @@
         <img class="modal-content" id="imgModalTarget">
         <div id="modal-caption"></div>
     </div>
-	
-<script>
-        // --- LOGIKA ZOOM GAMBAR (LIGHTBOX) ---
-        
-        // 1. Ambil elemen-elemen modal
+
+    <script>
         var modal = document.getElementById("myModal");
         var modalImg = document.getElementById("imgModalTarget");
         var captionText = document.getElementById("modal-caption");
         var closeBtn = document.getElementsByClassName("close-modal")[0];
-
-        // 2. Cari SEMUA gambar di dalam .step-image
         var images = document.querySelectorAll('.step-image img');
 
-        // 3. Tambahkan Event Click ke setiap gambar tersebut
         images.forEach(function(img) {
-            // Ubah kursor jadi 'zoom-in' untuk memberi tahu user bisa diklik
             img.style.cursor = 'zoom-in';
             
             img.onclick = function() {
-                modal.style.display = "block"; // Tampilkan Modal
-                modalImg.src = this.src;       // Salin Link Gambar
-                captionText.innerHTML = this.alt; // Ambil Teks 'alt' sebagai Caption
-                document.body.style.overflow = "hidden"; // Kunci scroll latar belakang
+                modal.style.display = "flex"; // KUNCI: Pakai 'flex' agar rata tengah
+                modalImg.src = this.src;       
+                captionText.innerHTML = this.alt; 
+                document.body.style.overflow = "hidden"; 
             }
         });
 
-        // 4. Logika Menutup Modal
         function closeModal() {
             modal.style.display = "none";
-            document.body.style.overflow = "auto"; // Aktifkan scroll kembali
+            document.body.style.overflow = "auto"; 
         }
 
-        // Klik tombol (X) untuk tutup
         closeBtn.onclick = closeModal;
 
-        // Klik di mana saja di area hitam untuk tutup
         modal.onclick = function(e) {
-            if (e.target !== modalImg) { // Pastikan yang diklik bukan gambarnya
+            if (e.target !== modalImg) { 
                 closeModal();
             }
         }
 
-        // Tekan tombol 'Esc' di keyboard untuk tutup
         document.onkeydown = function(evt) {
             evt = evt || window.event;
-            if (evt.keyCode == 27) { // 27 = tombol Esc
+            if (evt.keyCode == 27) { 
                 closeModal();
             }
         };
