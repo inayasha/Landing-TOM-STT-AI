@@ -114,7 +114,7 @@
                 </ul>
             </div>
             <div class="step-image">
-                <img src="https://placehold.co/800x500/F0F2F6/111111?text=Screenshot+Tab+Login" alt="Screenshot Login">
+                <img src="https://res.cloudinary.com/tomstt/image/upload/v1773162633/1_Login_m8vkps.png" alt="Screenshot Login">
             </div>
         </div>
 
@@ -130,7 +130,7 @@
                 </ul>
             </div>
             <div class="step-image">
-                <img src="https://placehold.co/800x500/F0F2F6/111111?text=Screenshot+Tab+Upload" alt="Screenshot Upload">
+                <img src="https://res.cloudinary.com/tomstt/image/upload/v1773162633/2_Upload_dmrvrt.png" alt="Screenshot Upload">
             </div>
         </div>
 
@@ -145,7 +145,7 @@
                 </ul>
             </div>
             <div class="step-image">
-                <img src="https://placehold.co/800x500/F0F2F6/111111?text=Screenshot+Tab+AI" alt="Screenshot AI">
+                <img src="https://res.cloudinary.com/tomstt/image/upload/v1773162633/3_Analisis_uayrgc.png" alt="Screenshot AI">
             </div>
         </div>
 
@@ -161,7 +161,7 @@
                 </ul>
             </div>
             <div class="step-image">
-                <img src="https://placehold.co/800x500/F0F2F6/111111?text=Screenshot+Hasil+Download" alt="Screenshot Download">
+                <img src="https://res.cloudinary.com/tomstt/image/upload/v1773162634/4_Download_jo4hix.png" alt="Screenshot Download">
             </div>
         </div>
 
@@ -256,6 +256,135 @@
     <footer>
         <p>&copy; 2026 TOM'STT AI. Hak Cipta Dilindungi Undang-Undang.</p>
     </footer>
+	
+<style>
+        /* 1. Kotak Hitam Overlay (Disembunyikan default) */
+        .image-modal {
+            display: none; /* Sembunyi */
+            position: fixed;
+            z-index: 9999; /* Paling atas */
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9); /* Hitam Transparan */
+            cursor: zoom-out; /* Klik di mana saja untuk keluar */
+        }
+
+        /* 2. Gambar di Dalam Modal (Ukuran Penuh) */
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 85vh; /* Maksimal 85% tinggi layar */
+            border: 4px solid #fff;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            
+            /* Animasi Zoom Masuk */
+            animation-name: zoom;
+            animation-duration: 0.3s;
+        }
+
+        @keyframes zoom {
+            from {transform:scale(0)} 
+            to {transform:scale(1)}
+        }
+
+        /* 3. Tombol Tutup (X) */
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .close-modal:hover,
+        .close-modal:focus {
+            color: #e74c3c; /* Warna merah saat hover */
+            text-decoration: none;
+        }
+
+        /* 4. Teks Deskripsi di Bawah Gambar */
+        #modal-caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 15px 0;
+            font-size: 1.1rem;
+        }
+
+        /* Responsif HP: Gambar lebih penuh */
+        @media only screen and (max-width: 700px){
+            .modal-content { width: 100%; }
+            .close-modal { right: 15px; top: 10px; font-size: 50px; }
+        }
+    </style>
+
+    <div id="myModal" class="image-modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="imgModalTarget">
+        <div id="modal-caption"></div>
+    </div>
+	
+<script>
+        // --- LOGIKA ZOOM GAMBAR (LIGHTBOX) ---
+        
+        // 1. Ambil elemen-elemen modal
+        var modal = document.getElementById("myModal");
+        var modalImg = document.getElementById("imgModalTarget");
+        var captionText = document.getElementById("modal-caption");
+        var closeBtn = document.getElementsByClassName("close-modal")[0];
+
+        // 2. Cari SEMUA gambar di dalam .step-image
+        var images = document.querySelectorAll('.step-image img');
+
+        // 3. Tambahkan Event Click ke setiap gambar tersebut
+        images.forEach(function(img) {
+            // Ubah kursor jadi 'zoom-in' untuk memberi tahu user bisa diklik
+            img.style.cursor = 'zoom-in';
+            
+            img.onclick = function() {
+                modal.style.display = "block"; // Tampilkan Modal
+                modalImg.src = this.src;       // Salin Link Gambar
+                captionText.innerHTML = this.alt; // Ambil Teks 'alt' sebagai Caption
+                document.body.style.overflow = "hidden"; // Kunci scroll latar belakang
+            }
+        });
+
+        // 4. Logika Menutup Modal
+        function closeModal() {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto"; // Aktifkan scroll kembali
+        }
+
+        // Klik tombol (X) untuk tutup
+        closeBtn.onclick = closeModal;
+
+        // Klik di mana saja di area hitam untuk tutup
+        modal.onclick = function(e) {
+            if (e.target !== modalImg) { // Pastikan yang diklik bukan gambarnya
+                closeModal();
+            }
+        }
+
+        // Tekan tombol 'Esc' di keyboard untuk tutup
+        document.onkeydown = function(evt) {
+            evt = evt || window.event;
+            if (evt.keyCode == 27) { // 27 = tombol Esc
+                closeModal();
+            }
+        };
+    </script>
 
 </body>
 </html>
