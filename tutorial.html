@@ -33,9 +33,28 @@
         .hero h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px; }
         .hero p { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 40px; }
         
-        .video-container { position: relative; max-width: 800px; margin: 0 auto; padding-bottom: 56.25%; /* Rasio 16:9 */ height: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 4px solid #FFF; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        /* --- WADAH KHUSUS YOUTUBE SHORTS (PORTRAIT) --- */
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 350px; /* Kunci batas maksimal lebar agar tidak raksasa di PC */
+            margin: 30px auto; /* margin auto akan membuat video selalu rata tengah */
+            aspect-ratio: 9 / 16; /* Memaksa bentuk Portrait/Berdiri */
+            border-radius: 16px; /* Lengkungan ujung disesuaikan dengan gaya HP */
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15); /* Efek melayang sedikit lebih tebal */
+            background-color: #000;
+        }
 
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+		
         /* --- STEP-BY-STEP SECTION --- */
         .tutorial-content { padding: 80px 5%; max-width: 1100px; margin: 0 auto; }
         .step-row { display: flex; align-items: center; gap: 50px; margin-bottom: 80px; }
@@ -96,9 +115,15 @@
         <h1>Panduan Penggunaan TOM'<span style="color: var(--accent);">STT</span> AI</h1>
         <p>Pelajari cara mengubah rekaman audio Anda menjadi dokumen Notulen, Laporan, Matriks RTL, Q&A, Ringkasan Eksekutif, Artikel Berita, Analisis SWOT ataupun Transkrip Verbatim hanya dalam 4 langkah mudah.</p>
         
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/TVxG03aPVo4?si=-5DM6bx2DzLokP6a" title="Tutorial TOM STT AI" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
+		<div class="video-container">
+			<iframe 
+				src="https://www.youtube.com/embed/39nK7e7QV8w" 
+				title="Tutorial TOM STT AI" 
+				frameborder="0" 
+				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+				allowfullscreen>
+			</iframe>
+		</div>
     </section>
 
     <section class="tutorial-content">
