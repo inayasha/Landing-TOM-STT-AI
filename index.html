@@ -4,7 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TOM'STT AI | Otomatisasi Notulen & Laporan Rapat</title>
-	<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎙️</text></svg>">
+    <meta name="description" content="TOM'STT AI (tom-stt.com) — kini juga hadir sebagai TEMAN RAPAT (rapat.co). Ubah rekaman rapat jadi notulen otomatis dalam menit.">
+
+    <!-- Favicon & Web App Manifest -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#000000">
     <style>
         /* --- CSS DASAR & RESET --- */
         :root {
@@ -22,13 +30,20 @@
         
         /* --- NAVIGASI --- */
         nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: rgba(255,255,255,0.95); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #EEE; backdrop-filter: blur(10px); }
-        .logo { font-size: 24px; font-weight: 800; letter-spacing: -1px; }
+        .logo { display: flex; align-items: center; font-size: 24px; font-weight: 800; letter-spacing: -1px; line-height: 1; flex-shrink: 0; }
+        .logo img { height: 32px; width: auto; margin-right: 6px; display: block; }
         .logo span { color: var(--accent); }
         .nav-links { display: flex; gap: 20px; align-items: center; }
         .nav-links a { font-weight: 600; font-size: 15px; transition: color 0.3s; }
         .nav-links a:hover { color: var(--accent); }
         .btn-login { background: var(--primary); color: #FFF !important; padding: 8px 20px; border-radius: 8px; }
         .btn-login:hover { background: #333; }
+
+        /* --- BRAND-HISTORY PILL --- */
+        .brand-pill { display: inline-flex; align-items: center; gap: 6px; background: #FFF; border: 1px solid #E5E5E5; padding: 6px 14px; border-radius: 999px; font-size: 13px; color: var(--text-muted); margin-bottom: 22px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); max-width: 100%; }
+        .brand-pill a { color: var(--accent); font-weight: 700; text-decoration: none; }
+        .brand-pill a:hover { text-decoration: underline; }
+        .brand-pill .sep { color: #BBB; }
 
         /* --- HERO SECTION --- */
         .hero { text-align: center; padding: 80px 5% 60px; background: var(--bg-light); }
@@ -74,17 +89,27 @@
         .btn-price:hover { background: var(--accent); color: #FFF; border-color: var(--accent); }
 
         /* --- FOOTER --- */
-        footer { text-align: center; padding: 30px 5%; border-top: 1px solid #EEE; color: var(--text-muted); font-size: 0.9rem; }
+        footer { text-align: center; padding: 30px 5%; border-top: 1px solid #EEE; color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
+        footer .copyright-line { font-weight: 600; color: #444; margin-bottom: 4px; }
+        footer .copyright-line a { color: var(--accent); font-weight: 700; }
+        footer .copyright-line a:hover { text-decoration: underline; }
 
 		/* --- RESPONSIVE MOBILE --- */
         @media (max-width: 768px) {
             nav { flex-direction: column; gap: 15px; padding: 15px 5%; }
+            .logo { font-size: 22px; }
+            .logo img { height: 30px; }
             .nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
             .nav-links a { font-size: 13px; }
             .btn-login { font-size: 13px !important; padding: 6px 15px; }
             .hero h1 { font-size: 2.2rem; }
+            .brand-pill { font-size: 12px; padding: 5px 12px; }
             .price-card.popular { transform: scale(1); }
 			section[id] { scroll-margin-top: 100px; }
+        }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.7rem; }
+            .brand-pill { font-size: 11px; padding: 5px 10px; gap: 4px; }
         }
     </style>
 </head>
@@ -92,20 +117,25 @@
 
     <nav>
         <a href="index.html" class="logo" style="text-decoration: none; color: inherit;">
-            🎙️ TOM'<span>STT</span> AI
+            <img src="mic_logo.png" alt="TEMAN RAPAT"><span style="color: inherit;">TEMAN RAPAT</span>
         </a>
 		<div class="nav-links">
             <a href="#tutorial">Cara Kerja</a>
             <a href="#pricing">Harga</a>
             <a href="tutorial.html">Panduan & FAQ</a>
-            <a href="https://tom-stt.com" class="btn-login">Mulai</a>
+            <a href="https://rapat.co" class="btn-login">Mulai</a>
         </div>
     </nav>
 
     <section class="hero">
+        <span class="brand-pill">
+            <a href="https://rapat.co">rapat.co</a>
+            <span class="sep">·</span>
+            <span>formerly TOM'STT AI (tom-stt.com)</span>
+        </span>
         <h1>Otomatisasi Kebutuhan Dokumen Anda dalam Hitungan Menit</h1>
         <p>Mengubah rekaman berjam-jam menjadi teks manual bisa menyita 1-2 hari kerja Anda. Tinggalkan cara lama, biarkan AI kami yang bekerja keras menyusun dokumen Notulen, Laporan, Matriks RTL, Q&A, Ringkasan Eksekutif, Artikel Berita, Analisis SWOT & Transkrip Verbatim siap cetak standar Kementerian/Lembaga dan Korporat.</p>
-        <a href="https://tom-stt.com" class="btn-main">Coba Sekarang</a>
+        <a href="https://rapat.co" class="btn-main">Coba Sekarang</a>
     </section>
 
     <section class="features">
@@ -178,7 +208,7 @@
                     <li><span>📅&nbsp; <b>Masa Aktif:</b>&nbsp; 30 Hari</span></li>
                     <li><span>🎁&nbsp; <b>Bonus Saldo:</b>&nbsp; Rp 10.000</span></li>
                 </ul>
-                <a href="https://tom-stt.com" class="btn-price">Beli Paket AIO</a>
+                <a href="https://rapat.co" class="btn-price">Beli Paket AIO</a>
             </div>
 
             <div class="price-card popular">
@@ -192,7 +222,7 @@
                     <li><span>📅&nbsp; <b>Masa Aktif:</b>&nbsp; 60 Hari</span></li>
                     <li><span>🎁&nbsp; <b>Bonus Saldo:</b>&nbsp; Rp 25.000</span></li>
                 </ul>
-                <a href="https://tom-stt.com" class="btn-price">Beli Paket AIO</a>
+                <a href="https://rapat.co" class="btn-price">Beli Paket AIO</a>
             </div>
 
             <div class="price-card">
@@ -205,7 +235,7 @@
                     <li><span>📅&nbsp; <b>Masa Aktif:</b>&nbsp; 90 Hari</span></li>
                     <li><span>🎁&nbsp; <b>Bonus Saldo:</b>&nbsp; Rp 75.000</span></li>
                 </ul>
-                <a href="https://tom-stt.com" class="btn-price">Beli Paket AIO</a>
+                <a href="https://rapat.co" class="btn-price">Beli Paket AIO</a>
             </div>
         </div>
 
@@ -225,7 +255,7 @@
                     <li><span>📅&nbsp; <b>Masa Aktif:</b>&nbsp; 14 Hari</span></li>
                     <li><span>🎁&nbsp; <b>Bonus Saldo:</b>&nbsp; Rp 2.000</span></li>
                 </ul>
-                <a href="https://tom-stt.com" class="btn-price">Beli Paket</a>
+                <a href="https://rapat.co" class="btn-price">Beli Paket</a>
             </div>
 
             <div class="price-card">
@@ -240,7 +270,7 @@
                     <li><span>📅&nbsp; <b>Masa Aktif:</b>&nbsp; 30 Hari</span></li>
                     <li><span>🎁&nbsp; <b>Bonus Saldo:</b>&nbsp; Rp 5.000</span></li>
                 </ul>
-                <a href="https://tom-stt.com" class="btn-price">Beli Paket</a>
+                <a href="https://rapat.co" class="btn-price">Beli Paket</a>
             </div>
 
             <div class="price-card popular">
@@ -258,7 +288,7 @@
                     <li><span>📅&nbsp; <b>Masa Aktif:</b>&nbsp; 45 Hari</span></li>
                     <li><span>🎁&nbsp; <b>Bonus Saldo:</b>&nbsp; Rp 15.000</span></li>
                 </ul>
-                <a href="https://tom-stt.com" class="btn-price">Beli Paket</a>
+                <a href="https://rapat.co" class="btn-price">Beli Paket</a>
             </div>
 
             <div class="price-card">
@@ -275,7 +305,7 @@
                     <li><span>📅&nbsp; <b>Masa Aktif:</b>&nbsp; 60 Hari</span></li>
                     <li><span>🎁&nbsp; <b>Bonus Saldo:</b>&nbsp; Rp 35.000</span></li>
                 </ul>
-                <a href="https://tom-stt.com" class="btn-price">Beli Paket</a>
+                <a href="https://rapat.co" class="btn-price">Beli Paket</a>
             </div>
         </div>
 
@@ -296,7 +326,7 @@
                 <li style="margin-bottom: 8px;"><span>&nbsp; <b>Bonus Saldo:</b>&nbsp; Rp 80.000</span></li>
             </ul>
             
-            <a href="https://tom-stt.com" class="btn-price" style="background: #ffc107; color: #111; width: 100%; max-width: 300px; margin: 0 auto;">Beli Paket Enterprise</a>
+            <a href="https://rapat.co" class="btn-price" style="background: #ffc107; color: #111; width: 100%; max-width: 300px; margin: 0 auto;">Beli Paket Enterprise</a>
         </div>
 
         <h3 style="text-align: center; margin-top: 60px; margin-bottom: 25px; font-size: 1.8rem; color: #0056b3;">Paket B2G/B2B Instansi</h3>
@@ -316,7 +346,7 @@
                     <li><span>📊&nbsp; <b>Pantauan:</b>&nbsp; Dashboard Analitik Staf</span></li>
                     <li><span>📄&nbsp; <b>Dokumen Resmi:</b>&nbsp; SPJ & Sertifikat Digital</span></li>
                 </ul>
-                <a href="https://tom-stt.com" class="btn-price" style="background: #0369a1; color: #FFF; border: none;">Hubungi Kami</a>
+                <a href="https://rapat.co" class="btn-price" style="background: #0369a1; color: #FFF; border: none;">Hubungi Kami</a>
             </div>
 
             <div class="price-card" style="background: #f0f4ff; border: 2px solid #0056b3;">
@@ -333,13 +363,14 @@
                     <li><span>📊&nbsp; <b>Pantauan:</b>&nbsp; Dashboard Analitik Staf</span></li>
                     <li><span>📄&nbsp; <b>Dokumen Resmi:</b>&nbsp; SPJ & Sertifikat Digital</span></li>
                 </ul>
-                <a href="https://tom-stt.com" class="btn-price" style="background: #0056b3; color: #FFF; border: none;">Hubungi Kami</a>
+                <a href="https://rapat.co" class="btn-price" style="background: #0056b3; color: #FFF; border: none;">Hubungi Kami</a>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 TOM'STT AI. Hak Cipta Dilindungi Undang-Undang.</p>
+        <p class="copyright-line">&copy; 2026 <a href="https://rapat.co">TEMAN RAPAT</a> (rapat.co) &middot; TOM'STT AI (tom-stt.com)</p>
+        <p>Hak Cipta Dilindungi Undang-Undang.</p>
     </footer>
 
 </body>
